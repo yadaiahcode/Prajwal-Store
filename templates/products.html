@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <title>Our Products</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+        <header class="header">
+        <div class="logo">
+            <h2>📚 Prajwal Stationery</h2>
+            <p>Stationery & Xerox Management</p>
+        </div>
+
+        <nav class="navbar">
+            <a href="{% url 'home' %}">Dashboard</a>
+            <a href="{% url 'list' %}">List Product</a>
+            <a href="{% url 'add' %}">Add Product</a>
+        </nav>
+    </header>
+
+<div class="container">
+
+    <h1>Our Products</h1>
+    <p>Explore our stationery collection</p>
+
+    <div class="product-grid">
+
+        {% for i in products %}
+
+        <div class="product-card">
+
+            {% if i.image %}
+                <img src="{{ i.image.url }}" alt="{{ i.product_name }}">
+            {% else %}
+                <div class="no-image">No Image</div>
+            {% endif %}
+
+            <h3>{{ i.product_name }}</h3>
+
+            <h2>₹{{ i.price }}</h2>
+
+            <a href="{% url 'detail' i.pk %}" class="view-btn">View Product</a>
+        </div>
+
+        {% empty %}
+
+        <p>No products available.</p>
+
+        {% endfor %}
+
+    </div>
+  <div class="form-buttons">
+                <a href="{% url 'product' %}" class="btn btn-secondary">Back</a>
+            </div>
+</div>
+
+<footer class="footer">
+    <p>© 2026 Prajwal Stationery & Xerox</p>
+</footer>
+{% endblock  %}

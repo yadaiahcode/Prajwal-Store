@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <title>Product Details</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <h2>📚 Prajwal Stationery</h2>
+        <p>Stationery & Xerox Management</p>
+    </div>
+    <nav class="navbar">
+            <a href="{% url 'product' %}">Products</a>
+            <a href="{% url 'list' %}">List Product</a>
+            <a href="{% url 'add' %}">Add Product</a>
+        </nav>
+</header>
+
+<main class="container">
+
+    <h1>Product Details</h1>
+    <p class="subtitle">Complete product information</p>
+    <div class="details-container">
+
+        <div class="details-image">
+            <img src="{{ detail.image.url }}"
+                 alt="Notebook">
+        </div>
+
+        <div class="details-info">
+
+            <h2>BOOK</h2>
+            <p class="product-category">{{ detail.product_name}}</p>
+
+            <div class="details-row">
+                <span>Price</span>
+                <strong>₹{{detail.price}}</strong>
+            </div>
+
+            <div class="details-row">
+                <span>Available Quantity</span>
+                <strong>{{detail.quantity}}</strong>
+            </div>
+
+            <div class="details-row">
+                <span>Description</span>
+                <strong>{{detail.description}}</strong>
+            </div>
+
+            <div class="details-row">
+                <span>Created at</span>
+                <strong>{{detail.created_at}}</strong>
+            </div>
+
+            <div class="details-row">
+                <span>Created at</span>
+                <strong>{{detail.updated_at}}</strong>
+            </div>
+
+            <div class="form-buttons">
+                <a href="{% url 'edit' detail.pk %}" class="btn btn-primary">Edit Product</a>
+                <a href="{% url 'delete' detail.pk %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'product' %}" class="btn btn-secondary">Back</a>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<footer class="footer">
+    <p>© 2026 Prajwal Stationery & Xerox</p>
+</footer>
+{% endblock  %}

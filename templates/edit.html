@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<header class="header">
+    <div class="logo">
+        <h2>📚 Prajwal Stationery</h2>
+        <p>Stationery & Xerox Management</p>
+    </div>
+
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Dashboard</a>
+        <a href="{% url 'product' %}">Products</a>
+        <a href="{% url 'list' %}">List Product</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <h1>Edit Product</h1>
+    <p class="subtitle">Update product information below</p>
+
+    <div class="form-container">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>Product Name</label>
+            <input type="text" name="name"
+                   value="{{ det.product_name }}" required>
+
+            <label>Price</label>
+            <input type="number" name="price"
+                   value="{{ det.price }}" required>
+
+            <label>Quantity</label>
+            <input type="number" name="quantity"
+                   value="{{ det.quantity }}" required>
+
+            <label>Description</label>
+            <textarea name="description" rows="4">{{ det.description }}</textarea>
+
+            <label>Current Product Image</label>
+
+            {% if det.image %}
+                <div class="current-image">
+                    <img src="{{ det.image.url }}"
+                         alt="{{ det.product_name }}"
+                         width="180">
+                </div>
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+
+            <label>Change Product Image</label>
+            <input type="file" name="image" accept="image/*">
+
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">
+                    Update Product
+                </button>
+
+                <a href="{% url 'product' %}" class="btn btn-secondary">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 Prajwal Stationery & Xerox</p>
+</footer>
+
+{% endblock %}

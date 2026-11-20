@@ -1,0 +1,67 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prajwal Stationery & Xerox</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h2>📚 Prajwal Stationery</h2>
+            <p>Stationery & Xerox Management</p>
+        </div>
+
+        <nav class="navbar">
+            <a href="{% url 'product' %}">Products</a>
+            <a href="{% url 'list' %}">List Product</a>
+            <a href="{% url 'add' %}">Add Product</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <h1>Dashboard</h1>
+        <p class="subtitle">Welcome to Prajwal Stationery & Xerox</p>
+
+        <div class="dashboard">
+
+            <div class="stat-card blue">
+                <h3>Total Products</h3>
+                <h1>{{total}}</h1>
+                <p>Products in store</p>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <h2>Quick Actions</h2>
+        </div>
+
+        <div class="quick-actions">
+          <a href="{% url 'product' %}" class="action-card">
+                <h3>💰ALL PRODUCTS</h3>
+                <p>Dispaly all the products</p>
+            </a>
+
+            <a href="{% url 'add' %}" class="action-card">
+                <h3>➕ Add Product</h3>
+                <p>Add new stationery products</p>
+            </a>
+
+            <a href="{% url 'list' %}" class="action-card">
+                <h3>📦 Product List</h3>
+                <p>View all available products</p>
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Prajwal Stationery & Xerox</p>
+    </footer>
+{% endblock  %}
+</body>
+</html>
